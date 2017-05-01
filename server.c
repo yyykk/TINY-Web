@@ -197,6 +197,20 @@ void get_filetype(char *filename, char *filetype){
 		strcpy(filetype, "text/plain");
 }
 
+void conver(char *code){
+	int i;	
+	for(i = 0; i < strlen(code); ++i){
+		if(code[i] == '%'){
+			code[i] = ' ';
+			code[i + 1] = ' ';
+			code[i + 2] = ' ';
+			i += 2;
+		}else if(code[i] == '|'){
+			code[i] = '"';
+		}
+	}
+}
+
 void serve_dynamic(int fd, char *filename, char *cgiargs){
 	char buf[MAXLINE], *emptylist[] = { NULL};
 
@@ -204,6 +218,11 @@ void serve_dynamic(int fd, char *filename, char *cgiargs){
 	write(fd, buf, strlen(buf));
 	sprintf(buf, "Server: Tiny Web Server\r\n");
 	write(fd, buf, strlen(buf));
+	
+	conver(cgiargs);
+
+	printf("%s\n", cgiargs);
+
 	if (fork() == 0){
 		setenv("QUERY_STRING", cgiargs, 1);
 		dup2(fd, STDOUT_FILENO);
