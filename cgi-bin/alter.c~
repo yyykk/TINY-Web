@@ -27,7 +27,7 @@ int main(){
 			field = mysql_fetch_fields(res);
 			sprintf(content, "%s<p>", content);
 			for(t = 0; t < mysql_num_fields(res); t++){
-				sprintf(content, "%s%s\t", content, field[t]);
+				sprintf(content, "%s%s\t", content, field[t].name);
 			}
 			sprintf(content, "%s</p>", content);
 			while(row = mysql_fetch_row(res)){
