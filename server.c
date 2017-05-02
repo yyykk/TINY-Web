@@ -49,9 +49,14 @@ int main(int argc, char **argv){
 		clientlen = sizeof(clientaddr);
 		printf("Wait for client\n");
 		connfd = accept(listenfd, (SA *)&clientaddr, &clientlen);
-		printf("Connect successful!\n");
-		doit(connfd);
-		close(connfd);		
+		if (fork() == 0){
+			close(listenfd);
+			printf("Connect successful!\n");
+			doit(connfd);
+			close(connfd);
+			exit(0);
+		}
+		close(connfd);			
 	}
 	return 0;
 }

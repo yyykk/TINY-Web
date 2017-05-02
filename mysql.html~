@@ -1,0 +1,32 @@
+﻿<!doctype html>
+<html>
+<head>
+<title>mysql</title>
+</head>
+
+<body>
+<center>
+	<p> select:<input type = "text" id = "select"/> </p>
+	<p> <input type = "button" onclick = "show();" value = "select"/> </p>
+
+	<p> alter:<input type = "text" id = "alter"/> </p>
+	<p> <input type = "button" onclick = "alter();" value = "alter"/> </p>
+
+</center>
+</body>
+
+
+<script>
+
+function show(){
+	sql = document.getElementById("select").value;
+	alert(sql);
+	window.location.href = "./cgi-bin/select?" + sql;
+}
+
+function alter(){
+	sql = document.getElementById("alter").value;
+	window.location.href = "./cgi-bin/alter?" + sql;
+}
+
+</script>

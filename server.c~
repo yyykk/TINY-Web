@@ -49,9 +49,13 @@ int main(int argc, char **argv){
 		clientlen = sizeof(clientaddr);
 		printf("Wait for client\n");
 		connfd = accept(listenfd, (SA *)&clientaddr, &clientlen);
-		printf("Connect successful!\n");
-		doit(connfd);
-		close(connfd);		
+		if (fork() == 0){
+			close(listenfd);
+			printf("Connect successful!\n");
+			doit(connfd);
+			close(connfd);
+			exit(0);
+		}			
 	}
 	return 0;
 }
@@ -220,6 +224,8 @@ void serve_dynamic(int fd, char *filename, char *cgiargs){
 	write(fd, buf, strlen(buf));
 	
 	conver(cgiargs);
+
+	printf("%s\n", cgiargs);
 
 	if (fork() == 0){
 		setenv("QUERY_STRING", cgiargs, 1);
