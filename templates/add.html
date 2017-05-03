@@ -1,0 +1,24 @@
+﻿<!doctype html>
+<html>
+<head>
+<title>calculator</title>
+</head>
+
+<body>
+<center>
+	<p> a:<input type = "text" id = "a"> </p>
+	<p> b:<input type = "text" id = "b"> </p>
+	<p> <input type = "button" onclick = "openlink()" value = "result"> </p>
+</center>
+</body>
+
+
+<script>
+
+function openlink(){
+	a = document.getElementById("a").value;
+	b = document.getElementById("b").value;	
+	window.location.href = "../cgi-bin/add?" + a + "&" + b;
+}
+
+</script>

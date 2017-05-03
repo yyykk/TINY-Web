@@ -1,8 +1,6 @@
 <center>
 <li><a href="add.html">add</a></li>
 <li><a href="mysql.html">mysql</a></li>
-<li><a href="/cgi-bin/select?select * from testData">select * from testData</a></li>
-<li><a href="/cgi-bin/alter?insert testData values (0, |Tom|)">insert testData values (0, "Tom")</a></li>
 <li><a href="canvas.html">canvas</a></li>
 <li><a href="server.c">server.c</a></li>
 </center>
