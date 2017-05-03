@@ -1,5 +1,4 @@
-#include "mysql/mysql.h"
-#include "../csapp.h"
+#include "../yk.h"
 
 int main(){
 	MYSQL mysql;
@@ -25,18 +24,20 @@ int main(){
 			mysql_real_query(&mysql, code, (unsigned int)strlen(code));
 			res = mysql_store_result(&mysql);
 			field = mysql_fetch_fields(res);
-			sprintf(content, "%s<p>", content);
+			sprintf(content, "%s<p></p>\n<table border = '1'>\n", content);
+			sprintf(content, "%s<tr>", content);
 			for(t = 0; t < mysql_num_fields(res); t++){
-				sprintf(content, "%s%s\t", content, field[t].name);
+				sprintf(content, "%s<th>%s</th>\t", content, field[t].name);
 			}
-			sprintf(content, "%s</p>", content);
+			sprintf(content, "%s</tr>\n", content);
 			while(row = mysql_fetch_row(res)){
-				sprintf(content, "%s<p>", content);
+				sprintf(content, "%s<tr>", content);
 				for(t = 0; t < mysql_num_fields(res); t++){
-					sprintf(content, "%s%s\t\t", content, row[t]);
+					sprintf(content, "%s<td>%s</td>\t", content, row[t]);
 				}
-				sprintf(content, "%s</p>\n", content);
+				sprintf(content, "%s</tr>\n", content);
 			}
+			sprintf(content, "%s</table>\n", content);
 		}
 		
 	}else{

@@ -1,5 +1,4 @@
-#include "mysql/mysql.h"
-#include "../csapp.h"
+#include "../yk.h"
 
 int main(){
 	MYSQL mysql;
