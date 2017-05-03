@@ -88,9 +88,14 @@ void doit(int fd){
 	struct stat sbuf;
 	char buf[MAXLINE], method[MAXLINE], uri[MAXLINE], version[MAXLINE];
 	char filename[MAXLINE], cgiargs[MAXLINE];
-
 	readline(fd, buf, MAXLINE);
+	printf("%s \n", buf);
 	sscanf(buf, "%s %s %s", method, uri, version);
+
+	if(uri[strlen(uri) - 1] == '?'){
+		uri[strlen(uri) - 1] = '\0';
+	}	
+	
 	if (strcasecmp(method, "GET")){
 		clienterror(fd, method, "501", "NOT Implemented", "Tiny does not implement this method");
 		return;
