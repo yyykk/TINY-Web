@@ -43,7 +43,6 @@
                     <label for="inputNewPassword">teacher</label>
                     <input type="text" class="form-control" id="teacher">
                 </div>
-		<div class="row form-group">
                 <div class="col-lg-6 col-md-6 form-group">                  
                     <label for="inputNewPassword">sql</label>
                     <input type="text" class="form-control" id="sql">
@@ -63,7 +62,7 @@
 				<input type="button" class="templatemo-blue-button width-100" onclick="TableModify()" value="修改数据">
 			</div>
 			<div class="form-group">
-				<input type="button" class="templatemo-blue-button width-100" onclick="sql()" value="sql">
+				<input type="button" class="templatemo-blue-button width-100" onclick="sqlcode()" value="sql">
 			</div>
             </div>                          
           </div>
@@ -108,7 +107,7 @@
 		}
 		window.open("../cgi-bin/alter?" + sql, "newwindow","height=500,width=600,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no"); 
 	  }
-	  function sql(){
+	  function sqlcode(){
 		sql = document.getElementById(TextName[5]).value;
 		window.open("../cgi-bin/alter?" + sql, "newwindow","height=500,width=600,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no"); 
 	  }
