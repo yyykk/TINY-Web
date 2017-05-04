@@ -59,7 +59,7 @@ int main(){
 				}
 				sprintf(content, "%s</tr>\n", content);
 			}
-			sprintf(content, "%s</div></div></div>\n", content);
+			sprintf(content, "%s</table></div></div></div>\n", content);
 			script(content);
 			sprintf(content, "%s</body></html>\n", content);
 		}
