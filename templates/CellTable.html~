@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width initial-scale=1">  
+    <title>各小区网络报表</title>
+    <meta name="description" content="">
+    <meta name="author" content="templatemo">
+    
+     
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/templatemo-style.css" rel="stylesheet">
+    
+
+  </head>
+  <body>  
+    <!-- Left column -->
+		<div class="row form-group">
+			<font color = "ffffff">
+                <div class="col-lg-6 col-md-6 form-group">                  
+                    <label for="inputFirstName">id</label>
+                    <input type="text" class="form-control" id="cell" >                  
+                </div>
+                <div class="col-lg-6 col-md-6 form-group">                  
+                    <label for="inputLastName">name</label>
+                    <input type="text" class="form-control" id="stream" >                  
+                </div> 
+              </div>
+              <div class="row form-group">
+                <div class="col-lg-6 col-md-6 form-group">                  
+                    <label for="inputUsername">class</label>
+                    <input type="text" class="form-control" id="TcpTimes" >                  
+                </div>
+                <div class="col-lg-6 col-md-6 form-group">                  
+                    <label for="inputEmail">result</label>
+                    <input type="text" class="form-control" id="TcpQos" >                  
+                </div> 
+              </div>
+              <div class="row form-group">
+                <div class="col-lg-6 col-md-6 form-group">                  
+                    <label for="inputNewPassword">teacher</label>
+                    <input type="text" class="form-control" id="TcpDelay">
+                </div>
+		<div class="row form-group">
+                <div class="col-lg-6 col-md-6 form-group">                  
+                    <label for="inputNewPassword">sql</label>
+                    <input type="text" class="form-control" id="TcpDelay">
+                </div>
+              </div>
+		    </font>
+			<div class="form-group">
+				<input type="button" class="templatemo-blue-button width-100" onclick="insRow()" value="插入数据">
+			</div>
+			<div class="form-group">
+				<input type="button" class="templatemo-blue-button width-100" onclick="TableFind()" value="查找数据">
+			</div>
+			<div class="form-group">
+				<input type="button" class="templatemo-blue-button width-100" onclick="TableDelete()" value="删除数据">
+			</div>
+			<div class="form-group">
+				<input type="button" class="templatemo-blue-button width-100" onclick="TableModify()" value="修改数据">
+			</div>
+			<div class="form-group">
+				<input type="button" class="templatemo-blue-button width-100" onclick="sql()" value="sql">
+			</div>
+            </div>                          
+          </div>
+		
+       
+			            
+		
+			
+    <!-- JS -->
+    <script>
+	  function TableFind(){
+		var Ftab = document.getElementById('FindTable');
+		var tab = document.getElementById('myTable');
+		var temp = document.getElementById('cell').value;
+		console.log(temp);
+		for(i = 0; i < tab.rows.length; i++){
+			if (temp == tab.rows[i].cells[0].innerHTML){
+				if (Ftab.rows.length > 1){
+					Ftab.deleteRow(1);
+				}
+				var x = Ftab.insertRow(Ftab.rows.length);
+				for (j = 0; j < 6; j++){	
+					var y = x.insertCell(j);
+					y.innerHTML = tab.rows[i].cells[j].innerHTML;
+					console.log(tab.rows[i].cells[j].innerHTML);
+				}
+				return 1;
+			}
+		}
+		alert("未找到该小区")
+	  }
+	  function TableDelete(){
+		var tab = document.getElementById('myTable');
+		var temp = document.getElementById('cell').value;
+		for(i = 0; i < tab.rows.length; i++){
+			if (temp == tab.rows[i].cells[0].innerHTML){
+				var x = tab.deleteRow(i);
+				for (j = 0; j < 6; j++){	
+					var y = x.insertCell(j);
+					y.innerHTML = "";
+				}
+				return 1;
+			}
+		}
+		alert("未找到该小区");
+	  }
+	  function TableModify(){
+		var tab = document.getElementById('myTable');
+		var temp = document.getElementById('cell').value;
+		for(i = 0; i < tab.rows.length; i++){
+			if (temp == tab.rows[i].cells[0].innerHTML){
+				tab.deleteRow(i);
+				var x= tab.insertRow(i);
+				for (i = 0; i < tab.rows.item(0).cells.length; i++){	
+					var y = x.insertCell(i);
+					y.innerHTML = document.getElementById(TextName[i]).value;
+				}
+				return 1;
+			}
+		}
+		alert("未找到该小区");
+	  }
+	  var TextName = new Array("cell", "stream", "TcpTimes", "TcpQos", "TcpDelay", "HttpDelay");
+	  function insRow(){
+		var tab = document.getElementById('myTable');
+		for(i = 0; i < tab.rows.length; i++){
+			if (document.getElementById(TextName[0]).value == tab.rows[i].cells[0].innerHTML){
+				alert("该小区名已存在");
+				return 1;
+			}
+		}
+		var x= tab.insertRow(1);
+		for (i = 0; i < tab.rows.item(0).cells.length; i++){	
+			var y = x.insertCell(i);
+			y.innerHTML = document.getElementById(TextName[i]).value;
+		}
+	}
+    </script>
+  </body>
+</html>

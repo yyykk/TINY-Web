@@ -39,11 +39,11 @@ int main(){
 	if(!mysql_real_connect(&mysql, "localhost", "root", "mysql", "test", 0, NULL, 0)){
 		sprintf(content, "%sError connecting to MySql\n", content);
 	}else{
+		strcpy(code, getenv("QUERY_STRING"));
 		flag = mysql_real_query(&mysql, code, (unsigned int)strlen(code));
 		if(flag){
 			sprintf(content, "%s[%s]...failed\n", content, code);
 		}else{			
-			//printf(content, "%s[%s]...success\n", content, code);
 			res = mysql_store_result(&mysql);
 			field = mysql_fetch_fields(res);
 			sprintf(content, "%s <table id = 'myTable' class='table table-striped table-bordered templatemo-user-table'>\n", content);
@@ -59,9 +59,7 @@ int main(){
 				}
 				sprintf(content, "%s</tr>\n", content);
 			}
-			sprintf(content, "%s </table><div class='form-group'>\n", content);
-			sprintf(content, "%s <input type='button' class='templatemo-blue-button width-100' onclick='insRow()' value='插入数据'></button>\n", content);
-			sprintf(content, "%s</div></div></div></div>\n", content);
+			sprintf(content, "%s</div></div></div>\n", content);
 			script(content);
 			sprintf(content, "%s</body></html>\n", content);
 		}

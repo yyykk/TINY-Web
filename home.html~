@@ -26,14 +26,14 @@
 					<button type="submit" class="templatemo-blue-button width-100">2048</button>
 				</div>
 			</form>
-			<form action="./templates/Newschool.html" class="templatemo-login-form">
+			<form action="./templates/table.html" class="templatemo-login-form">
 				<div class="form-group">
 					<button type="submit" class="templatemo-blue-button width-100">Table</button>
 				</div>
 			</form>
 			<form action="./templates/MotorwayStream.html" class="templatemo-login-form">
 				<div class="form-group">
-					<button type="submit" class="templatemo-blue-button width-100">MotorwayStream</button>
+					<button type="submit" class="templatemo-blue-button width-100">Map</button>
 				</div>
 			</form>
 			<form action="./templates/add.html" class="templatemo-login-form">

@@ -20,8 +20,8 @@ int main(){
 			sprintf(content, "%s[%s]...failed\n", content, code);
 		}else{			
 			sprintf(content, "%s[%s]...success\n", content, code);
-			strcpy(code, "select * from testData");
-			mysql_real_query(&mysql, code, (unsigned int)strlen(code));
+			//strcpy(code, "select * from testData");
+			//mysql_real_query(&mysql, code, (unsigned int)strlen(code));
 			res = mysql_store_result(&mysql);
 			field = mysql_fetch_fields(res);
 			sprintf(content, "%s<p></p>\n<table border = '1'>\n", content);

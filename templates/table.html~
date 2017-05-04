@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width initial-scale=1">  
+    <title>mysql</title>
+    <meta name="description" content="">
+    <meta name="author" content="templatemo">
+    
+     
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/templatemo-style.css" rel="stylesheet">
+    
+
+  </head>
+  <body>  
+    <!-- Left column -->
+		<div class="row form-group">
+			<font color = "ffffff">
+                <div class="col-lg-6 col-md-6 form-group">                  
+                    <label for="inputFirstName">id</label>
+                    <input type="text" class="form-control" id="id" >                  
+                </div>
+                <div class="col-lg-6 col-md-6 form-group">                  
+                    <label for="inputLastName">name</label>
+                    <input type="text" class="form-control" id="name" >                  
+                </div> 
+              </div>
+              <div class="row form-group">
+                <div class="col-lg-6 col-md-6 form-group">                  
+                    <label for="inputUsername">class</label>
+                    <input type="text" class="form-control" id="class" >                  
+                </div>
+                <div class="col-lg-6 col-md-6 form-group">                  
+                    <label for="inputEmail">result</label>
+                    <input type="text" class="form-control" id="result" >                  
+                </div> 
+              </div>
+              <div class="row form-group">
+                <div class="col-lg-6 col-md-6 form-group">                  
+                    <label for="inputNewPassword">teacher</label>
+                    <input type="text" class="form-control" id="teacher">
+                </div>
+		<div class="row form-group">
+                <div class="col-lg-6 col-md-6 form-group">                  
+                    <label for="inputNewPassword">sql</label>
+                    <input type="text" class="form-control" id="sql">
+                </div>
+              </div>
+		    </font>
+			<div class="form-group">
+				<input type="button" class="templatemo-blue-button width-100" onclick="insRow()" value="插入数据">
+			</div>
+			<div class="form-group">
+				<input type="button" class="templatemo-blue-button width-100" onclick="TableFind()" value="查找数据">
+			</div>
+			<div class="form-group">
+				<input type="button" class="templatemo-blue-button width-100" onclick="TableDelete()" value="删除数据">
+			</div>
+			<div class="form-group">
+				<input type="button" class="templatemo-blue-button width-100" onclick="TableModify()" value="修改数据">
+			</div>
+			<div class="form-group">
+				<input type="button" class="templatemo-blue-button width-100" onclick="sql()" value="sql">
+			</div>
+            </div>                          
+          </div>
+		
+       
+			            
+		
+			
+    <!-- JS -->
+    <script>
+	  var TextName = new Array("id", "name", "class", "result", "teacher", "sql");
+	  function TableFind(){
+		id = document.getElementById(TextName[0]).value;
+		if(id == '0'){
+			sql = "select * from testData";
+		}else{
+			sql = "select * from testData where id = " + '|' + id + '|';
+		}
+		window.open("../cgi-bin/select?" + sql, "newwindow", "height=500,width=600,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no");
+	  }
+	  function TableDelete(){
+		sql = "delete from testData where id = " + '|' + document.getElementById(TextName[0]).value + '|';
+		window.open("../cgi-bin/alter?" + sql, "newwindow","height=500,width=600,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no");
+	  }
+	  function TableModify(){
+		id = document.getElementById(TextName[0]).value;
+		name = document.getElementById(TextName[1]).value;
+		Class = document.getElementById(TextName[2]).value;
+		result = document.getElementById(TextName[3]).value;
+		teacher = document.getElementById(TextName[4]).value;
+		sql = "update testData set name = " + '|' + name + '|' + ", class = " + '|' + Class + '|' + ", result = " + '|' + result + '|' + ", teacher = " + '|' + teacher + '|' + " where id = " + '|' + id + '|;';
+		window.open("../cgi-bin/alter?" + sql, "newwindow","height=500,width=600,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no");
+	  }
+	  function insRow(){
+		sql = "insert testData value (";
+		for (i = 0; i < 5; i++){
+			if(i != 4){
+				sql += '|' + document.getElementById(TextName[i]).value + '|, ';
+			}else{
+				sql += '|' + document.getElementById(TextName[i]).value + '|)';
+			}
+		}
+		window.open("../cgi-bin/alter?" + sql, "newwindow","height=500,width=600,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no"); 
+	  }
+	  function sql(){
+		sql = document.getElementById(TextName[5]).value;
+		window.open("../cgi-bin/alter?" + sql, "newwindow","height=500,width=600,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no"); 
+	  }
+    </script>
+  </body>
+</html>
